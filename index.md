@@ -44,6 +44,8 @@ normalize brightness, then use a CNN to identify whether the image is a stop sig
 
 
 For the CNN, I trained it on 12 randomly sampled images of stop signs that I cropped out from the dataset (those images were removed from the test dataset), and 12 noise images. Normally, you need a lot more data to make a well-performing CNN, but in this case there aren't many complex patterns to find: I remove a lot of confounding factors such as the brightness of the scene and the orientation of the sign, so even a simple neural network that isn't trained on much data performs pretty well. This also has the advantage of being quick to run as well as quick to train.
+## Video
+the video can be found on the repo, it is titled 'stop_sign_video.mp4'
 
 ## Takeaways
 I believe this strategy of image recognition (looking for the sillouete/shape of an object in an image) could work well for flat, regular shapes, and could potentially be faster and more performant than a sliding window method. It reduces confounding factors and is less demanding on the neural network at the end of the pipeline. It also has the advantage of returning polygons around the area that actually contains the object instead of bounding boxes. 
