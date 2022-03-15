@@ -16,31 +16,31 @@ The main idea I came up with was using the 'shape' of the stop sign to find pote
 
 original image:
 
-![original image](images/maple_hall_stop_sign.png =200x)
+![original image](images/maple_hall_stop_sign.png)
 
 grayscale -> gaussian blur -> canny edge detection:
 
-![original image](images/maple_hall_stop_sign_canny.png =200x)
+![original image](images/maple_hall_stop_sign_canny.png)
 
 opencv contour detection -> fill any polygons:
 
-![original image](images/maple_hall_stop_sign_cont.png =200x)
+![original image](images/maple_hall_stop_sign_cont.png)
 
 apply mask for each filled polygon + original image to remove background:
 
-![original image](images/maple_hall_stop_sign_bg_removed_106.png =200x)
+![original image](images/maple_hall_stop_sign_bg_removed_106.png)
 
 find keypoints on image and transform it to a flat image to remove perspective (also transform it to 100x100 image):
 
-![original image](images/maple_hall_stop_sign_warped_107.png? =200x)
+![original image](images/maple_hall_stop_sign_warped_107.png)
 
 I used this reference image for every polygon to transform it from a perspective space to a flat space:
 
-![original image](images/stop_sign_ref.png?raw=true)
+![original image](images/stop_sign_ref.png)
 
 normalize brightness, then use a CNN to identify whether the image is a stop sign or not, if it is, draw the contour on the original image to get the final result:
 
-![original image](images/maple_hall_stop_sign_out.png =200x)
+![original image](images/maple_hall_stop_sign_out.png)
 
 
 For the CNN, I trained it on 12 randomly sampled images of stop signs that I cropped out from the dataset (those images were removed from the test dataset), and 12 noise images. Normally, you need a lot more data to make a well-performing CNN, but in this case there aren't many complex patterns to find: I remove a lot of confounding factors such as the brightness of the scene and the orientation of the sign, so even a simple neural network that isn't trained on much data performs pretty well. This also has the advantage of being quick to run as well as quick to train.
