@@ -13,20 +13,28 @@ For the dataset, I used this: https://github.com/mbasilyan/Stop-Sign-Detection. 
 
 ## Techniques
 The main idea I came up with was using the 'shape' of the stop sign to find potential candidates. The idea is, if we can get polygons around things that 'look like' they could be stop signs, then we can crop those polygons out. Now that we have those polygons cropped out of the image, we can transform and center them- and now we have a simple binary classification problem! In this way, we can locate and identify stop signs, wherever they are in the image. So, the CV pipeline looks like this:
+
 original image:
 ![original image](images/maple_hall_stop_sign.png?raw=true)
+
 grayscale -> gaussian blur -> canny edge detection:
 ![original image](images/maple_hall_stop_sign_canny.png?raw=true)
+
 opencv contour detection -> fill any polygons:
 ![original image](images/maple_hall_stop_sign_cont.png?raw=true)
+
 apply mask for each filled polygon + original image to remove background:
 ![original image](images/maple_hall_stop_sign_bg_removed_106.png?raw=true)
+
 find keypoints on image and transform it to a flat image to remove perspective (also transform it to 100x100 image):
 ![original image](images/maple_hall_stop_sign_warped_107.png?raw=true)
+
 I used this reference image for every polygon to transform it from a perspective space to a flat space:
 ![original image](images/stop_sign_ref.png?raw=true)
+
 normalize brightness, then use a CNN to identify whether the image is a stop sign or not, if it is, draw the contour on the original image to get the final result:
 ![original image](images/maple_hall_stop_sign_out.png?raw=true)
+
 
 For the CNN, I trained it on 12 randomly sampled images of stop signs that I cropped out from the dataset (those images were removed from the test dataset), and 12 noise images. Normally, you need a lot more data to make a well-performing CNN, but in this case there aren't many complex patterns to find: I remove a lot of confounding factors such as the brightness of the scene and the orientation of the sign, so even a simple neural network that isn't trained on much data performs pretty well. This also has the advantage of being quick to run as well as quick to train.
 
