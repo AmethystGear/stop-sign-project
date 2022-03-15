@@ -1,4 +1,4 @@
-# Stop Sign Detection - My attempt at a simple, fast stop sign detector
+# Stop Sign Detection - My Attempt at a Simple, Fast Stop Sign Detector
 Source code is in this [github repository](https://github.com/AmethystGear/stop-sign-project)
 ## Abstract
 In this project, I created a stop sign detector that draws a polygon around the detected stop sign(s). It uses edge detection filters, certain opencv heuristics, and contour detection to find potential perspective-transformed stop signs in an image, then transforms those polygons into a 'flat' representation and uses a simple CNN to determine if these potential 'octagons' are stop signs or not.
