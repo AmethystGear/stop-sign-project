@@ -50,5 +50,6 @@ the video can be found on the repo, it is titled 'stop_sign_video.mp4'
 ## Takeaways
 I believe this strategy of image recognition (looking for the sillouete/shape of an object in an image) could work well for flat, regular shapes, and could potentially be faster and more performant than a sliding window method. It reduces confounding factors and is less demanding on the neural network at the end of the pipeline. It also has the advantage of returning polygons around the area that actually contains the object instead of bounding boxes. 
 
+One of the issues with my specific pipeline is that because I use canny edge detection to look for the silloette/shape of the stop sign, if there are significant edge-breaks, it's possible that the sign would not be detected. There might be another way to look through the image for a certain shape - that's the area I would explore if I were to keep working on the project.
 ## References
 N/A
